@@ -5,7 +5,6 @@ import { ReactNode } from "react";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
-import Github from "../../logos/github";
 import { Badge } from "../../ui/badge";
 import { Button, buttonVariants } from "../../ui/button";
 import Glow from "../../ui/glow";
@@ -22,8 +21,8 @@ interface HeroButtonProps {
 }
 
 interface HeroProps {
-  title?: string;
-  description?: string;
+  title?: string | ReactNode;
+  description?: string | ReactNode;
   mockup?: ReactNode | false;
   badge?: ReactNode | false;
   buttons?: HeroButtonProps[] | false;
@@ -31,13 +30,16 @@ interface HeroProps {
 }
 
 export default function Hero({
-  title = "Give your big idea the design it deserves",
-  description = "Professionally designed blocks and templates built with React, Shadcn/ui and Tailwind that will help your product stand out.",
+  title = (<>
+    Software sob medida, feito para o{" "}
+    <span className="text-primary">seu processo</span>
+  </>),
+  description = "Unimos visão executiva e engenharia consultiva ágil para construir sistemas custom-first que geram eficiência operacional, dados para gestão e crescimento sustentável.",
   mockup = (
     <Screenshot
       srcLight="/dashboard-light.png"
       srcDark="/dashboard-dark.png"
-      alt="Launch UI app screenshot"
+      alt="Launch UI app screenshot 1"
       width={1248}
       height={765}
       className="w-full"
@@ -46,25 +48,25 @@ export default function Hero({
   badge = (
     <Badge variant="outline" className="animate-appear">
       <span className="text-muted-foreground">
-        New version of Launch UI is out!
+        Engenharia consultiva ágil
       </span>
-      <a href={siteConfig.getStartedUrl} className="flex items-center gap-1">
-        Get started
+      <a href={siteConfig.getStartedUrl} className="flex items-center text-primary gap-1">
+        Fale com um especialista
         <ArrowRightIcon className="size-3" />
       </a>
     </Badge>
   ),
   buttons = [
     {
-      href: siteConfig.getStartedUrl,
-      text: "Get Started",
+      href: "#contato",
+      text: "Fale com um especialista",
       variant: "default",
     },
     {
-      href: siteConfig.links.github,
-      text: "Github",
+      href: "#processo",
+      text: "Veja como trabalhamos",
       variant: "glow",
-      icon: <Github className="mr-2 size-4" />,
+      iconRight: <ArrowRightIcon className="ml-4 size-4" />,
     },
   ],
   className,
@@ -79,14 +81,15 @@ export default function Hero({
       <div className="max-w-container mx-auto flex flex-col gap-12 pt-16 sm:gap-24">
         <div className="flex flex-col items-center gap-6 text-center sm:gap-12">
           {badge !== false && badge}
-          <h1 className="animate-appear from-foreground to-foreground dark:to-muted-foreground relative z-10 inline-block bg-linear-to-r bg-clip-text text-4xl leading-tight font-semibold text-balance text-transparent drop-shadow-2xl sm:text-6xl sm:leading-tight md:text-8xl md:leading-tight">
+          <h1
+            className="animate-appear max from-foreground to-foreground dark:to-muted-foreground relative z-10 inline-block bg-linear-to-r bg-clip-text text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight text-balance sm:leading-tight md:leading-tight">
             {title}
           </h1>
           <p className="text-md animate-appear text-muted-foreground relative z-10 max-w-[740px] font-medium text-balance opacity-0 delay-100 sm:text-xl">
             {description}
           </p>
           {buttons !== false && buttons.length > 0 && (
-            <div className="animate-appear relative z-10 flex justify-center gap-4 opacity-0 delay-300">
+            <div className="animate-appear relative z-10 grid justify-center gap-4 opacity-0 delay-300 grid-cols-1 md:grid-cols-2">
               {buttons.map((button, index) => (
                 <Button
                   key={index}

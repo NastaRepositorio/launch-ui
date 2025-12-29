@@ -3,7 +3,6 @@ import { ReactNode } from "react";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
-import LaunchUI from "../../logos/launch-ui";
 import {
   Footer,
   FooterBottom,
@@ -11,6 +10,7 @@ import {
   FooterContent,
 } from "../../ui/footer";
 import { ModeToggle } from "../../ui/mode-toggle";
+import Screenshot from "../../ui/screenshot";
 
 interface FooterLink {
   text: string;
@@ -33,7 +33,6 @@ interface FooterProps {
 }
 
 export default function FooterSection({
-  logo = <LaunchUI />,
   name = "Launch UI",
   columns = [
     {
@@ -75,7 +74,14 @@ export default function FooterSection({
           <FooterContent>
             <FooterColumn className="col-span-2 sm:col-span-3 md:col-span-1">
               <div className="flex items-center gap-2">
-                {logo}
+                <Screenshot
+                  srcLight="/logo_light.png"
+                  srcDark="/logo_dark.png"
+                  alt="Nasta logo"
+                  width={40}
+                  height={40}
+                  className="w-10 h-10"
+                />
                 <h3 className="text-xl font-bold">{name}</h3>
               </div>
             </FooterColumn>

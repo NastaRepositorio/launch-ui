@@ -7,7 +7,6 @@ import { ReactNode } from "react";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
-import LaunchUI from "../logos/launch-ui";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -17,6 +16,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "./navigation-menu";
+import Screenshot from "./screenshot";
 
 interface ComponentItem {
   title: string;
@@ -98,7 +98,14 @@ export default function Navigation({
         "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
     },
   ],
-  logo = <LaunchUI />,
+  logo = <Screenshot
+    srcLight="/logo_light.png"
+    srcDark="/logo_dark.png"
+    alt="Nasta logo"
+    width={40}
+    height={40}
+    className="w-10 h-10"
+  />,
   logoTitle = "Launch UI",
   logoDescription = "Landing page template built with React, Shadcn/ui and Tailwind that you can copy/paste into your project.",
   logoHref = siteConfig.url,

@@ -5,7 +5,6 @@ import { ReactNode } from "react";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
-import LaunchUI from "../../logos/launch-ui";
 import { Button, buttonVariants } from "../../ui/button";
 import {
   Navbar as NavbarComponent,
@@ -14,6 +13,7 @@ import {
 } from "../../ui/navbar";
 import Navigation from "../../ui/navigation";
 import { Sheet, SheetContent, SheetTrigger } from "../../ui/sheet";
+import Screenshot from "../../ui/screenshot";
 
 interface NavbarLink {
   text: string;
@@ -41,23 +41,14 @@ interface NavbarProps {
 }
 
 export default function Navbar({
-  logo = <LaunchUI />,
-  name = "Launch UI",
+  name = "Nasta",
   homeUrl = siteConfig.url,
   mobileLinks = [
     { text: "Getting Started", href: siteConfig.url },
     { text: "Components", href: siteConfig.url },
     { text: "Documentation", href: siteConfig.url },
   ],
-  actions = [
-    { text: "Sign in", href: siteConfig.url, isButton: false },
-    {
-      text: "Get Started",
-      href: siteConfig.url,
-      isButton: true,
-      variant: "default",
-    },
-  ],
+  actions = [],
   showNavigation = true,
   customNavigation,
   className,
@@ -65,14 +56,21 @@ export default function Navbar({
   return (
     <header className={cn("sticky top-0 z-50 -mb-4 px-4 pb-4", className)}>
       <div className="fade-bottom bg-background/15 absolute left-0 h-24 w-full backdrop-blur-lg"></div>
-      <div className="max-w-container relative mx-auto">
+      <div className="max-w-6xl relative mx-auto">
         <NavbarComponent>
           <NavbarLeft>
             <a
               href={homeUrl}
               className="flex items-center gap-2 text-xl font-bold"
             >
-              {logo}
+              <Screenshot
+                srcLight="/logo_light.png"
+                srcDark="/logo_dark.png"
+                alt="Nasta logo"
+                width={40}
+                height={40}
+                className="w-10 h-10"
+              />
               {name}
             </a>
             {showNavigation && (customNavigation || <Navigation />)}
