@@ -12,8 +12,9 @@ import {
   NavbarRight,
 } from "../../ui/navbar";
 import Navigation from "../../ui/navigation";
-import { Sheet, SheetContent, SheetTrigger } from "../../ui/sheet";
 import Screenshot from "../../ui/screenshot";
+import { Sheet, SheetContent, SheetTrigger } from "../../ui/sheet";
+import { ThemeToggle } from "../../ui/theme-toggle";
 
 interface NavbarLink {
   text: string;
@@ -99,6 +100,7 @@ export default function Navbar({
                 </a>
               ),
             )}
+            <ThemeToggle />
             <Sheet>
               <SheetTrigger asChild>
                 <Button

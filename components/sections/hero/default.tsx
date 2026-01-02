@@ -7,10 +7,10 @@ import { cn } from "@/lib/utils";
 
 import { Badge } from "../../ui/badge";
 import { Button, buttonVariants } from "../../ui/button";
-import Glow from "../../ui/glow";
-import { Mockup, MockupFrame } from "../../ui/mockup";
-import Screenshot from "../../ui/screenshot";
 import { Section } from "../../ui/section";
+
+import { ThreeDMarquee } from "@/components/ui/3d-marquee";
+import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect";
 
 interface HeroButtonProps {
   href: string;
@@ -23,10 +23,10 @@ interface HeroButtonProps {
 interface HeroProps {
   title?: string | ReactNode;
   description?: string | ReactNode;
-  mockup?: ReactNode | false;
   badge?: ReactNode | false;
   buttons?: HeroButtonProps[] | false;
   className?: string;
+  images?: string[];
 }
 
 export default function Hero({
@@ -35,16 +35,6 @@ export default function Hero({
     <span className="text-primary">seu processo</span>
   </>),
   description = "Unimos visão executiva e engenharia consultiva ágil para construir sistemas custom-first que geram eficiência operacional, dados para gestão e crescimento sustentável.",
-  mockup = (
-    <Screenshot
-      srcLight="/dashboard-light.png"
-      srcDark="/dashboard-dark.png"
-      alt="Launch UI app screenshot 1"
-      width={1248}
-      height={765}
-      className="w-full"
-    />
-  ),
   badge = (
     <Badge variant="outline" className="animate-appear">
       <span className="text-muted-foreground">
@@ -69,6 +59,39 @@ export default function Hero({
       iconRight: <ArrowRightIcon className="ml-4 size-4" />,
     },
   ],
+  images = [
+    "https://assets.aceternity.com/cloudinary_bkp/3d-card.png",
+    "https://assets.aceternity.com/animated-modal.png",
+    "https://assets.aceternity.com/animated-testimonials.webp",
+    "https://assets.aceternity.com/cloudinary_bkp/Tooltip_luwy44.png",
+    "https://assets.aceternity.com/github-globe.png",
+    "https://assets.aceternity.com/glare-card.png",
+    "https://assets.aceternity.com/layout-grid.png",
+    "https://assets.aceternity.com/flip-text.png",
+    "https://assets.aceternity.com/hero-highlight.png",
+    "https://assets.aceternity.com/carousel.webp",
+    "https://assets.aceternity.com/placeholders-and-vanish-input.png",
+    "https://assets.aceternity.com/shooting-stars-and-stars-background.png",
+    "https://assets.aceternity.com/signup-form.png",
+    "https://assets.aceternity.com/cloudinary_bkp/stars_sxle3d.png",
+    "https://assets.aceternity.com/spotlight-new.webp",
+    "https://assets.aceternity.com/cloudinary_bkp/Spotlight_ar5jpr.png",
+    "https://assets.aceternity.com/cloudinary_bkp/Parallax_Scroll_pzlatw_anfkh7.png",
+    "https://assets.aceternity.com/tabs.png",
+    "https://assets.aceternity.com/cloudinary_bkp/Tracing_Beam_npujte.png",
+    "https://assets.aceternity.com/cloudinary_bkp/typewriter-effect.png",
+    "https://assets.aceternity.com/glowing-effect.webp",
+    "https://assets.aceternity.com/hover-border-gradient.png",
+    "https://assets.aceternity.com/cloudinary_bkp/Infinite_Moving_Cards_evhzur.png",
+    "https://assets.aceternity.com/cloudinary_bkp/Lamp_hlq3ln.png",
+    "https://assets.aceternity.com/macbook-scroll.png",
+    "https://assets.aceternity.com/cloudinary_bkp/Meteors_fye3ys.png",
+    "https://assets.aceternity.com/cloudinary_bkp/Moving_Border_yn78lv.png",
+    "https://assets.aceternity.com/multi-step-loader.png",
+    "https://assets.aceternity.com/vortex.png",
+    "https://assets.aceternity.com/wobble-card.png",
+    "https://assets.aceternity.com/world-map.webp",
+  ],
   className,
 }: HeroProps) {
   return (
@@ -78,6 +101,7 @@ export default function Hero({
         className,
       )}
     >
+      <BackgroundRippleEffect />
       <div className="max-w-container mx-auto flex flex-col gap-12 pt-16 sm:gap-24">
         <div className="flex flex-col items-center gap-6 text-center sm:gap-12">
           {badge !== false && badge}
@@ -89,7 +113,7 @@ export default function Hero({
             {description}
           </p>
           {buttons !== false && buttons.length > 0 && (
-            <div className="animate-appear relative z-10 grid justify-center gap-4 opacity-0 delay-300 grid-cols-1 md:grid-cols-2">
+            <div className="animate-appear w-full md:w-auto relative z-10 grid justify-center gap-4 opacity-0 delay-300 grid-cols-1 md:grid-cols-2">
               {buttons.map((button, index) => (
                 <Button
                   key={index}
@@ -106,23 +130,9 @@ export default function Hero({
               ))}
             </div>
           )}
-          {mockup !== false && (
+          {images.length > 0 && (
             <div className="relative w-full pt-12">
-              <MockupFrame
-                className="animate-appear opacity-0 delay-700"
-                size="small"
-              >
-                <Mockup
-                  type="responsive"
-                  className="bg-background/90 w-full rounded-xl border-0"
-                >
-                  {mockup}
-                </Mockup>
-              </MockupFrame>
-              <Glow
-                variant="top"
-                className="animate-appear-zoom opacity-0 delay-1000"
-              />
+              <ThreeDMarquee images={images} />
             </div>
           )}
         </div>

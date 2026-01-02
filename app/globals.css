@@ -67,6 +67,9 @@
   --animate-appear: appear 0.6s forwards ease-out;
   --animate-appear-zoom: appear-zoom 0.6s forwards ease-out;
 
+  --animate-cell-ripple: cell-ripple var(--duration, 200ms) ease-out none 1
+  var(--delay, 0ms);
+
   @keyframes accordion-down {
     from {
       height: 0;
@@ -106,6 +109,17 @@
     100% {
       opacity: 1;
       transform: scale(1);
+    }
+  }
+  @keyframes cell-ripple {
+    0% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 0.4;
     }
   }
 }
